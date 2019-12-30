@@ -12,8 +12,8 @@ import {
   UpdatedAt
 } from "sequelize-typescript";
 
-import OwnedItem from "./ownedItem";
-import Wallet from "./wallet";
+import OwnedItem from "@models/OwnedItem";
+import Wallet from "@models/Wallet";
 
 @Scopes(() => ({
   full: {
