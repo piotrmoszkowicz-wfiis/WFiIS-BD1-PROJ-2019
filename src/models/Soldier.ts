@@ -3,6 +3,7 @@ import {
   Column,
   CreatedAt,
   DeletedAt,
+  ForeignKey,
   HasMany,
   Model,
   PrimaryKey,
@@ -13,6 +14,8 @@ import {
 } from "sequelize-typescript";
 
 import OwnedItem from "@models/OwnedItem";
+import RoundStats from "@models/RoundStats";
+import User from "@models/User";
 import Wallet from "@models/Wallet";
 
 @Scopes(() => ({
@@ -38,6 +41,7 @@ export default class Soldier extends Model<Soldier> {
   @Column
   public soldierName: string;
 
+  @ForeignKey(() => User)
   @Column
   public userId: number;
 
@@ -70,4 +74,7 @@ export default class Soldier extends Model<Soldier> {
 
   @HasMany(() => OwnedItem, "ownerId")
   public items: OwnedItem[];
+
+  @HasMany(() => RoundStats, "soldierId")
+  public roundsStats: RoundStats[];
 }

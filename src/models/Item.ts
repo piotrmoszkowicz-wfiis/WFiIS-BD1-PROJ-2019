@@ -75,6 +75,6 @@ export default class Item extends Model<Item> {
   @HasOne(() => OwnedItem, "itemId")
   public ownerData: OwnedItem;
 
-  @HasMany(() => Offer, "id")
+  @HasMany(() => Offer, "itemId")
   public offers: Offer[];
 }

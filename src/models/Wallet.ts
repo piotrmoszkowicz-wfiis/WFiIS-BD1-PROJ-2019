@@ -5,11 +5,14 @@ import {
   DataType,
   DefaultScope,
   DeletedAt,
+  ForeignKey,
   Model,
   PrimaryKey,
   Table,
   UpdatedAt
 } from "sequelize-typescript";
+
+import User from "@models/User";
 
 import Currency from "Currency";
 
@@ -26,6 +29,7 @@ export default class Wallet extends Model<Wallet> {
   @Column
   public id: number;
 
+  @ForeignKey(() => User)
   @Column
   public userId: number;
 
