@@ -1,7 +1,6 @@
 enum UserRights {
-  User,
-  Moderator,
-  Administrator
+  User = "User",
+  Administrator = "Administrator"
 }
 
 export default UserRights;

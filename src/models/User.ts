@@ -36,8 +36,11 @@ export default class User extends Model<User> {
   @Column
   public password: string;
 
-  @Column(DataType.ENUM("User", "Moderator", "Administrator"))
+  @Column(DataType.ENUM("User", "Administrator"))
   public rights: UserRights;
+
+  @Column(DataType.STRING(1024))
+  public token: string;
 
   @HasMany(() => Wallet, "userId")
   public wallets: Wallet[];

@@ -12,6 +12,8 @@ module.exports = {
   },
   app: {
     port: 4000,
-    env: "dev"
+    env: "dev",
+    saltRounds: 10,
+    jwtKey: ""
   }
 };
