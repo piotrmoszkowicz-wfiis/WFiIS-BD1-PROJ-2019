@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run build-ts && npm run eslint",
+    "build": "npm run eslint && npm run build-ts",
     "serve": "node -r ./tsconfig-paths-bootstrap.js dist/app.js",
     "watch-serve": "nodemon -r ./tsconfig-paths-bootstrap.js dist/app.js",
     "reformat": "npm run prettier && npm run eslint",
