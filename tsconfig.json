@@ -1,0 +1,28 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "es2017",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@models/*": ["src/models/*"],
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*",
+    "src/*"
+  ]
+}
