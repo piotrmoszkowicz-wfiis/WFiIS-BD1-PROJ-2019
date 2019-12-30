@@ -4,11 +4,14 @@ import {
   CreatedAt,
   DataType,
   DeletedAt,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
   UpdatedAt
 } from "sequelize-typescript";
+
+import Round from "@models/Round";
 
 import ServerRegion from "ServerRegion";
 
@@ -65,6 +68,9 @@ export default class Server extends Model<Server> {
 
   @Column
   public currentMap: number;
+
+  @HasMany(() => Round, "serverId")
+  public rounds: Round[];
 
   @CreatedAt
   public createdAt: Date;
