@@ -44,9 +44,7 @@ export default class UserService {
     return token;
   }
 
-  private async getUserByEmail(
-    email: string,
-  ): Promise<User> {
+  private async getUserByEmail(email: string): Promise<User> {
     return this.userModel.findOne({
       where: {
         email
