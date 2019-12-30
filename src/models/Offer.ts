@@ -11,7 +11,7 @@ import {
   UpdatedAt
 } from "sequelize-typescript";
 
-import Item from "./item";
+import Item from "@models/Item";
 
 import Currency from "Currency";
 

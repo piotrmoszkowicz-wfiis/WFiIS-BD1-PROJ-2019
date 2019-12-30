@@ -11,8 +11,8 @@ import {
   UpdatedAt
 } from "sequelize-typescript";
 
-import Item from "./item";
-import Soldier from "./soldier";
+import Item from "@models/Item";
+import Soldier from "@models/Soldier";
 
 @DefaultScope(() => ({
   attributes: ["availableTill", "barPosition", "createdAt", "useCount"]

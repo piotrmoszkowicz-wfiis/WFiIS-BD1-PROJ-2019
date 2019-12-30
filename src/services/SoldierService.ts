@@ -1,4 +1,4 @@
-import Soldier from "@models/soldier";
+import Soldier from "@models/Soldier";
 
 export default class SoldierService {
   constructor(readonly modelSoldier = Soldier) {}

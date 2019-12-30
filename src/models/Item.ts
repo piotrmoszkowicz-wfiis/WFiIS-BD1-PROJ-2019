@@ -8,8 +8,8 @@ import {
   Table
 } from "sequelize-typescript";
 
-import Offer from "./offer";
-import OwnedItem from "./ownedItem";
+import Offer from "@models/Offer";
+import OwnedItem from "@models/OwnedItem";
 
 import ItemCategory from "ItemCategory";
 import ItemType from "ItemType";

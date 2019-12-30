@@ -1,8 +1,8 @@
 import { Op } from "sequelize";
 
-import Item from "@models/item";
-import Offer from "@models/offer";
-import OwnedItem from "@models/ownedItem";
+import Item from "@models/Item";
+import Offer from "@models/Offer";
+import OwnedItem from "@models/OwnedItem";
 
 export default class ItemService {
   constructor(
