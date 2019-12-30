@@ -2,17 +2,30 @@ import bcrypt from "bcrypt";
 import config from "config";
 import jwt from "jsonwebtoken";
 
+import Soldier from "@models/Soldier";
 import User from "@models/User";
+
 import logger from "@utils/logger";
 
 export default class UserService {
   constructor(
     readonly jwtKey = config.get<string>("app.jwtKey"),
+    readonly soldierModel = Soldier,
     readonly userModel = User
   ) {}
 
-  public async getUserById(id: number): Promise<User> {
-    return this.userModel.findByPk(id);
+  public getUsers(): Promise<User[]> {
+    return this.userModel.findAll();
+  }
+
+  public getUserById(id: number): Promise<User> {
+    return this.userModel.findByPk(id, {
+      include: [
+        {
+          model: this.soldierModel
+        }
+      ]
+    });
   }
 
   public async loginUser(email: string, password: string) {
@@ -28,6 +41,31 @@ export default class UserService {
       };
     } catch (err) {
       logger.log("error", "Error while logging in", { err, email });
+      return undefined;
+    }
+  }
+
+  public async updateUser(id: number, userData: Partial<User>) {
+    try {
+      if (userData.password) {
+        userData.password = await UserService.hashPassword(userData.password);
+      }
+
+      const result = await this.userModel.update<User>(userData, {
+        where: {
+          id
+        }
+      });
+
+      if (!result[0]) {
+        return undefined;
+      }
+
+      return {
+        updated: true
+      };
+    } catch (err) {
+      logger.log("error", "Error while updating user", { userData });
       return undefined;
     }
   }
