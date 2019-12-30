@@ -13,6 +13,7 @@
     "paths": {
       "*": ["node_modules/*", "types/*"],
       "@controllers/*": ["controllers/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"]
