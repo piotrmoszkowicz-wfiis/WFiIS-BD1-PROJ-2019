@@ -4,6 +4,7 @@ import config from "config";
 import { createExpressServer } from "routing-controllers";
 
 import database from "./database";
+import AuthMiddleware from "@middlewares/AuthMiddleware";
 import logger from "@utils/logger";
 
 const controllers =
@@ -14,6 +15,7 @@ const controllers =
 const app = createExpressServer({
   cors: true,
   controllers,
+  middlewares: [AuthMiddleware],
   routePrefix: "/api"
 });
 
