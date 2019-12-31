@@ -1,0 +1,6 @@
+.git
+.idea
+dist
+queries
+.gitignore
+node_modules
