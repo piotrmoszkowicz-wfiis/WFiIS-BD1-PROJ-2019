@@ -2,6 +2,9 @@ import Wallet from "@models/Wallet";
 
 import { WalletBalance } from "WalletBalance";
 
+/**
+ * Class representing WalletService, which handles all operations connected with wallets
+ */
 export default class WalletService {
   constructor(readonly modelWallet = Wallet) {}
 

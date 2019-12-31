@@ -1,5 +1,8 @@
 import Server from "@models/Server";
 
+/**
+ * Class representing ServerService, which does all operations connected with Servers
+ */
 export default class ServerService {
   constructor(readonly serverModel = Server) {}
 

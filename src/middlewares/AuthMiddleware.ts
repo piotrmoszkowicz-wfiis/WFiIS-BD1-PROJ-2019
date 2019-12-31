@@ -9,6 +9,9 @@ import logger from "@utils/logger";
 import { RequestOverride } from "RequestOverride";
 import UserRights from "UserRights";
 
+/**
+ * Class representing AuthMiddleware, which handles whether user is authenticated or not
+ */
 @Middleware({ type: "before" })
 export default class AuthMiddleware implements ExpressMiddlewareInterface {
   async use(
