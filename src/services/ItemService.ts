@@ -4,6 +4,9 @@ import Item from "@models/Item";
 import Offer from "@models/Offer";
 import OwnedItem from "@models/OwnedItem";
 
+/**
+ * Class representing ItemService, which does all operations connected with Items
+ */
 export default class ItemService {
   constructor(
     readonly itemModel = Item,

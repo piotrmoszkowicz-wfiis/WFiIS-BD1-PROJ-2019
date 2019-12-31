@@ -1,5 +1,8 @@
 import Soldier from "@models/Soldier";
 
+/**
+ * Class representing SoldierService, which does all operations connected with Soldiers
+ */
 export default class SoldierService {
   constructor(readonly modelSoldier = Soldier) {}
 
