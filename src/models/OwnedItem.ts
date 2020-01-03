@@ -1,5 +1,6 @@
 import {
   AutoIncrement,
+  BelongsTo,
   Column,
   CreatedAt,
   DefaultScope,
@@ -54,4 +55,7 @@ export default class OwnedItem extends Model<OwnedItem> {
     field: "available_till"
   })
   public availableTill: string;
+
+  @BelongsTo(() => Item)
+  public itemData: Item;
 }
