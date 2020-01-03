@@ -3,6 +3,7 @@ import { Op } from "sequelize";
 import Item from "@models/Item";
 import Offer from "@models/Offer";
 import OwnedItem from "@models/OwnedItem";
+import logger from "@utils/logger";
 
 /**
  * Class representing ItemService, which does all operations connected with Items
@@ -13,6 +14,70 @@ export default class ItemService {
     readonly offerModel = Offer,
     readonly ownedItemModel = OwnedItem
   ) {}
+
+  /**
+   * Adds new item into the database
+   * @param newItemData              - Data of new item
+   */
+  public async addItem(newItemData: Partial<Item>) {
+    try {
+      const newItem = new this.itemModel(newItemData);
+      await newItem.save();
+
+      return newItem.toJSON();
+    } catch (err) {
+      logger.log("error", "Error adding item", { newItemData, err });
+      return undefined;
+    }
+  }
+
+  /**
+   * Deletes certain item from database
+   * @param itemId              - ID of Item
+   */
+  public async deleteItem(itemId: number) {
+    try {
+      const result = await this.itemModel.destroy({
+        where: {
+          id: itemId
+        }
+      });
+
+      if (!result) {
+        return undefined;
+      }
+
+      return {
+        deleted: true
+      };
+    } catch (err) {
+      logger.log("error", "Error while deleting item", { itemId, err });
+      return undefined;
+    }
+  }
+
+  /**
+   * Returns all items from the database
+   */
+  public async getAllItems() {
+    return this.itemModel
+      .findAll()
+      .then(items => items.map(item => item.toJSON()));
+  }
+
+  /**
+   * Returns certain item from database with offers
+   * @param itemId              - ID of Item
+   */
+  public getItemWithOffers(itemId: number) {
+    return this.itemModel.findByPk(itemId, {
+      include: [
+        {
+          model: this.offerModel
+        }
+      ]
+    });
+  }
 
   /**
    * Functions which grabs all items with information whether certain soldier owns them
