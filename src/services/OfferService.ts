@@ -18,7 +18,7 @@ export default class OfferService {
 
       return newOffer.toJSON();
     } catch (err) {
-      logger.log("error", "Error while deleting offer", { newOfferData, err });
+      logger.log("error", "Error while adding offer", { newOfferData, err });
       return undefined;
     }
   }
