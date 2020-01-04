@@ -104,7 +104,7 @@ export default class UserService {
    * @param user                          - User to generate token for
    */
   private async generateJWT(user: User) {
-    const { password, ...userData } = user.toJSON() as User;
+    const { password, token: tokenFromDB, ...userData } = user.toJSON() as User;
     const token = jwt.sign(userData, this.jwtKey);
     user.token = token;
     await user.save();
