@@ -37,7 +37,7 @@ export default class Server extends Model<Server> {
   @Column(DataType.ENUM("gva", "sjc", "iad", "nrt", "syd"))
   public region: ServerRegion;
 
-  @Column
+  @Column(DataType.JSONB)
   public currentPlayers: string;
 
   @Column({
