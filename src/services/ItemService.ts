@@ -57,6 +57,22 @@ export default class ItemService {
   }
 
   /**
+   * Gives item to the soldier
+   * @param ownedItemData
+   */
+  public async giveItem(ownedItemData: Partial<OwnedItem>) {
+    try {
+      const newOwnedItem = new this.itemModel(ownedItemData);
+      await newOwnedItem.save();
+
+      return newOwnedItem.toJSON();
+    } catch (err) {
+      logger.log("error", "Error giving item", { ownedItemData, err });
+      return undefined;
+    }
+  }
+
+  /**
    * Returns all items from the database
    */
   public async getAllItems() {
