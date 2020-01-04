@@ -31,7 +31,7 @@ export default class SoldierController {
     return this.soldierService.deleteSoldier(soldierId);
   }
 
-  @Get("/soldier/:soldierId")
+  @Get("/soldier/single/:soldierId")
   @OnUndefined(400)
   public getSoldier(@Param("soldierId") soldierId: number) {
     return this.soldierService
