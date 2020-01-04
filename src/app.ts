@@ -14,7 +14,10 @@ const controllers =
     : [__dirname + "/controllers/*.js"];
 
 const app = createExpressServer({
-  cors: true,
+  cors: {
+    origin: config.get("app.corsOrigin"),
+    credentials: true
+  },
   controllers,
   middlewares: [AuthMiddleware],
   routePrefix: "/api"

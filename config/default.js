@@ -14,6 +14,7 @@ module.exports = {
     port: 4000,
     env: "prod",
     saltRounds: process.env.APP_SALT_ROUNDS,
-    jwtKey: process.env.APP_JWT_KEY
+    jwtKey: process.env.APP_JWT_KEY,
+    corsOrigin: process.env.APP_CORS_ORIGIN
   }
 };

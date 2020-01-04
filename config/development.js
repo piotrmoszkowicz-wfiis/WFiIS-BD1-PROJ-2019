@@ -14,6 +14,7 @@ module.exports = {
     port: 4000,
     env: "dev",
     saltRounds: 10,
-    jwtKey: ""
+    jwtKey: "",
+    corsOrigin: "http://localhost:8080"
   }
 };
