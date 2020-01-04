@@ -10,6 +10,7 @@ import {
 
 import ItemService from "@services/ItemService";
 import Item from "@models/Item";
+import OwnedItem from "@models/OwnedItem";
 
 @JsonController()
 export default class ItemController {
@@ -19,6 +20,14 @@ export default class ItemController {
   @OnUndefined(400)
   public addItem(@Body({ required: true }) newItemData: Partial<Item>) {
     return this.itemService.addItem(newItemData);
+  }
+
+  @Post("/item/give")
+  @OnUndefined(400)
+  public giveItem(
+    @Body({ required: true }) newOwnedItemData: Partial<OwnedItem>
+  ) {
+    return this.itemService.giveItem(newOwnedItemData);
   }
 
   @Get("/item")
