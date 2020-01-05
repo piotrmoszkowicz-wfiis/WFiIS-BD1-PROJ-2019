@@ -16,7 +16,7 @@ import Item from "@models/Item";
 import Soldier from "@models/Soldier";
 
 @DefaultScope(() => ({
-  attributes: ["availableTill", "barPosition", "createdAt", "useCount"]
+  attributes: ["id", "availableTill", "barPosition", "createdAt", "useCount"]
 }))
 @Table({
   tableName: "game_owned_items",
@@ -58,4 +58,7 @@ export default class OwnedItem extends Model<OwnedItem> {
 
   @BelongsTo(() => Item)
   public itemData: Item;
+
+  @BelongsTo(() => Soldier)
+  public soldierData: Soldier;
 }

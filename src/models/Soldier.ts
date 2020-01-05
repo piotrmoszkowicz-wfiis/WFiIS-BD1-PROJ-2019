@@ -2,6 +2,7 @@ import {
   AutoIncrement,
   Column,
   CreatedAt,
+  Default,
   DeletedAt,
   ForeignKey,
   HasMany,
@@ -51,12 +52,14 @@ export default class Soldier extends Model<Soldier> {
   @Column
   public ipAddress: string;
 
+  @Default(1)
   @Column
   public level: number;
 
   @Column
   public kit: number;
 
+  @Default(0)
   @Column
   public xp: number;
 
