@@ -3,6 +3,7 @@ import {
   BelongsTo,
   Column,
   CreatedAt,
+  createIndexDecorator,
   DefaultScope,
   DeletedAt,
   ForeignKey,
@@ -14,6 +15,8 @@ import {
 
 import Item from "@models/Item";
 import Soldier from "@models/Soldier";
+
+const OwnedItemUniqueIndex = createIndexDecorator({ type: "UNIQUE" });
 
 @DefaultScope(() => ({
   attributes: ["id", "availableTill", "barPosition", "createdAt", "useCount"]
@@ -28,10 +31,14 @@ export default class OwnedItem extends Model<OwnedItem> {
   @Column
   public id: number;
 
+  // @ts-ignore
+  @OwnedItemUniqueIndex({ name: "owner_id"})
   @ForeignKey(() => Soldier)
   @Column
   public ownerId: number;
 
+  // @ts-ignore
+  @OwnedItemUniqueIndex({ name: "item_id" })
   @ForeignKey(() => Item)
   @Column
   public itemId: number;
