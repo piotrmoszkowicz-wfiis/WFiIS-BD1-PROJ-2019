@@ -2,7 +2,8 @@ import {
   AutoIncrement,
   Column,
   CreatedAt,
-  DataType, Default,
+  DataType,
+  Default,
   DeletedAt,
   HasMany,
   Model,
@@ -61,7 +62,7 @@ export default class Server extends Model<Server> {
   @Column
   public ranked: boolean;
 
-  @Default("[\"1:1\"]")
+  @Default('["1:1"]')
   @Column(DataType.JSONB)
   public mapList: string[];
 
