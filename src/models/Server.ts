@@ -2,7 +2,7 @@ import {
   AutoIncrement,
   Column,
   CreatedAt,
-  DataType,
+  DataType, Default,
   DeletedAt,
   HasMany,
   Model,
@@ -40,32 +40,40 @@ export default class Server extends Model<Server> {
   @Column(DataType.JSONB)
   public currentPlayers: string;
 
+  @Default(0)
   @Column({
     field: "num_current_players"
   })
   public numberOfCurrentPlayers: number;
 
+  @Default(32)
   @Column
   public capacity: number;
 
   @Column
   public ip: string;
 
+  @Default(false)
   @Column
   public online: boolean;
 
+  @Default(false)
   @Column
   public ranked: boolean;
 
+  @Default("[\"1:1\"]")
   @Column(DataType.JSONB)
   public mapList: string[];
 
+  @Default("3")
   @Column
   public roundsPerMap: string;
 
+  @Default("1")
   @Column
   public currentRound: string;
 
+  @Default(0)
   @Column
   public currentMap: number;
 
