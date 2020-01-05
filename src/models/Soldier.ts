@@ -1,7 +1,8 @@
 import {
   AutoIncrement,
   Column,
-  CreatedAt,Default,
+  CreatedAt,
+  Default,
   DeletedAt,
   ForeignKey,
   HasMany,
