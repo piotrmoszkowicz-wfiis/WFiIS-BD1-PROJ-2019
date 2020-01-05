@@ -32,7 +32,7 @@ export default class OwnedItem extends Model<OwnedItem> {
   public id: number;
 
   // @ts-ignore
-  @OwnedItemUniqueIndex({ name: "owner_id"})
+  @OwnedItemUniqueIndex({ name: "owner_id" })
   @ForeignKey(() => Soldier)
   @Column
   public ownerId: number;
