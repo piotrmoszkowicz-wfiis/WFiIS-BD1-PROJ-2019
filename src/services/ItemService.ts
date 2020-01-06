@@ -62,7 +62,7 @@ export default class ItemService {
    */
   public async giveItem(ownedItemData: Partial<OwnedItem>) {
     try {
-      const newOwnedItem = new this.itemModel(ownedItemData);
+      const newOwnedItem = new this.ownedItemModel(ownedItemData);
       await newOwnedItem.save();
 
       return newOwnedItem.toJSON();
@@ -74,10 +74,21 @@ export default class ItemService {
 
   /**
    * Returns all items from the database
+   * @param kitId               - ID of kit
    */
-  public async getAllItems() {
+  public async getAllItems(kitId: number) {
+    const opts : any = {};
+
+    if (kitId !== undefined) {
+      opts.where = {
+        kit: {
+          [Op.or]: [-1, kitId]
+        }
+      };
+    }
+
     return this.itemModel
-      .findAll()
+      .findAll(opts)
       .then(items => items.map(item => item.toJSON()));
   }
 
