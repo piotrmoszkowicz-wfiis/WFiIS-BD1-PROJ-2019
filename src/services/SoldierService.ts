@@ -3,8 +3,8 @@ import OwnedItem from "@models/OwnedItem";
 import RoundStats from "@models/RoundStats";
 import Item from "@models/Item";
 import logger from "@utils/logger";
-import {Sequelize} from "sequelize-typescript";
-import {Op} from "sequelize";
+import { Sequelize } from "sequelize-typescript";
+import { Op } from "sequelize";
 
 /**
  * Class representing SoldierService, which does all operations connected with Soldiers
@@ -92,27 +92,34 @@ export default class SoldierService {
     return this.modelSoldier.findByPk(id, opts);
   }
 
-
   /**
-   * Get count of all servers
+   * Get count of all soldiers by kit
    */
   public getSoldiersCountByClass(): Promise<any> {
     return this.modelSoldier.findAll({
-      attributes: ["kit", [Sequelize.fn("COUNT", Sequelize.col("kit")), "soldierCount"]],
+      attributes: [
+        "kit",
+        [Sequelize.fn("COUNT", Sequelize.col("kit")), "soldierCount"]
+      ],
       group: ["kit"],
       raw: true
     });
   }
 
   /**
-   *
+   * Gets count of all soldiers without any rounds played
    */
   public getSoldiersCountWithoutRounds(): Promise<any> {
     return this.modelSoldier.findAll({
-      attributes: [[Sequelize.fn("COUNT", Sequelize.col("Soldier.id")), "soldierCount"]],
-      having: Sequelize.where(Sequelize.fn("COUNT", Sequelize.col("roundsStats.id")), {
-        [Op.lt]: 1
-      }),
+      attributes: [
+        [Sequelize.fn("COUNT", Sequelize.col("Soldier.id")), "soldierCount"]
+      ],
+      having: Sequelize.where(
+        Sequelize.fn("COUNT", Sequelize.col("roundsStats.id")),
+        {
+          [Op.lt]: 1
+        }
+      ),
       group: ["Soldier.id"],
       raw: true,
       include: [

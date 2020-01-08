@@ -1,7 +1,7 @@
 import Server from "@models/Server";
 import Round from "@models/Round";
 import logger from "@utils/logger";
-import {Sequelize} from "sequelize-typescript";
+import { Sequelize } from "sequelize-typescript";
 
 /**
  * Class representing ServerService, which does all operations connected with Servers
@@ -55,7 +55,10 @@ export default class ServerService {
    */
   public getServersCount(): Promise<any> {
     return this.serverModel.findAll({
-      attributes: ["region", [Sequelize.fn("COUNT", Sequelize.col("region")), "serverCount"]],
+      attributes: [
+        "region",
+        [Sequelize.fn("COUNT", Sequelize.col("region")), "serverCount"]
+      ],
       group: ["region"],
       raw: true
     });
