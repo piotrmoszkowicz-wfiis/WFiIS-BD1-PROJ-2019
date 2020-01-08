@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import config from "config";
 import jwt from "jsonwebtoken";
+import { Sequelize } from "sequelize-typescript";
 
 import Soldier from "@models/Soldier";
 import User from "@models/User";
@@ -16,6 +17,16 @@ export default class UserService {
     readonly soldierModel = Soldier,
     readonly userModel = User
   ) {}
+
+  /**
+   * Get count of all users
+   */
+  public getUsersCount(): Promise<any> {
+    return this.userModel.findAll({
+      attributes: [[Sequelize.fn("COUNT", Sequelize.col("id")), "userCount"]],
+      raw: true
+    });
+  }
 
   /**
    * Get all users list
