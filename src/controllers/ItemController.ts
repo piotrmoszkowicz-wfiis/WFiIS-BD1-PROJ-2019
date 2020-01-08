@@ -30,9 +30,9 @@ export default class ItemController {
     return this.itemService.giveItem(newOwnedItemData);
   }
 
-  @Get("/item")
-  public getItems() {
-    return this.itemService.getAllItems();
+  @Get("/item/:kitId")
+  public getItems(@Param("kitId") kitId: number) {
+    return this.itemService.getAllItems(kitId);
   }
 
   @Get("/item/single/:itemId")
