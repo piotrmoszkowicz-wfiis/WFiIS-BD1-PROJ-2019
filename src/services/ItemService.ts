@@ -247,4 +247,29 @@ export default class ItemService {
       });
     });
   }
+
+  /**
+   * Revoke item from soldier
+   * @param ownedItemId             - ID of OwnedItem
+   */
+  public async revokeItem(ownedItemId: number) {
+    try {
+      const result = await this.ownedItemModel.destroy({
+        where: {
+          id: ownedItemId
+        }
+      });
+
+      if (!result) {
+        return undefined;
+      }
+
+      return {
+        deleted: true
+      };
+    } catch (err) {
+      logger.log("error", "Error while revoking item", { ownedItemId, err });
+      return undefined;
+    }
+  }
 }

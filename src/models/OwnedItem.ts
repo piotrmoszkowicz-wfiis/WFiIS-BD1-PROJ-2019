@@ -52,6 +52,8 @@ export default class OwnedItem extends Model<OwnedItem> {
   @CreatedAt
   public createdAt: Date;
 
+  // @ts-ignore
+  @OwnedItemUniqueIndex({ name: "deleted_at" })
   @DeletedAt
   public deletedAt: Date;
 

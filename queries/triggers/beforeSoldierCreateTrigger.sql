@@ -3,7 +3,7 @@ DECLARE
     idrecord RECORD;
 BEGIN
     SELECT id INTO idrecord FROM game_soldiers WHERE user_id = NEW.user_id AND is_main = TRUE;
-    IF idrecord.id IS NOT NULL THEN
+    IF idrecord.id IS NOT NULL AND NEW.is_main IS TRUE THEN
         RAISE EXCEPTION 'This user already has main soldier';
     END IF;
     RETURN NEW;
