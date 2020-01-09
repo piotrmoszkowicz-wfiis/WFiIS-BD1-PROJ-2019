@@ -32,8 +32,11 @@ export default class ItemController {
   }
 
   @Get("/item/:kitId?")
-  public getItems(@Params({ required: false }) kitId?: number) {
-    return this.itemService.getAllItems(kitId);
+  public getItems(@Params({ required: false }) params: any) {
+    if (!params) {
+      return this.itemService.getAllItems(undefined);
+    }
+    return this.itemService.getAllItems(params.kitId);
   }
 
   @Get("/item/single/:itemId")
