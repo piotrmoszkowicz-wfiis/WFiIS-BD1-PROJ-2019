@@ -48,4 +48,10 @@ export default class ItemController {
   public deleteItem(@Param("itemId") itemId: number) {
     return this.itemService.deleteItem(itemId);
   }
+
+  @Delete("/item/revoke/:itemOwnedId")
+  @OnUndefined(400)
+  public revokeItem(@Param("itemOwnedId") itemOwnedId: number) {
+    return this.itemService.revokeItem(itemOwnedId);
+  }
 }
