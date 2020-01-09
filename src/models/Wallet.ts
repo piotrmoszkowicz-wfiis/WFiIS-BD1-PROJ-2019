@@ -1,7 +1,7 @@
 import {
   AutoIncrement,
   Column,
-  CreatedAt,
+  CreatedAt, createIndexDecorator,
   DataType,
   DefaultScope,
   DeletedAt,
@@ -16,6 +16,8 @@ import User from "@models/User";
 
 import Currency from "Currency";
 
+const WalletUniqueIndex = createIndexDecorator({ type: "UNIQUE" });
+
 @DefaultScope(() => ({
   attributes: ["currency", "value"]
 }))
@@ -29,10 +31,14 @@ export default class Wallet extends Model<Wallet> {
   @Column
   public id: number;
 
+  // @ts-ignore
+  @WalletUniqueIndex({ name: "user_id" })
   @ForeignKey(() => User)
   @Column
   public userId: number;
 
+  // @ts-ignore
+  @WalletUniqueIndex({ name: "currency" })
   @Column(DataType.ENUM("_PF", "_AC"))
   public currency: Currency;
 
