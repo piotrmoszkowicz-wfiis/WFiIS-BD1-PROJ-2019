@@ -9,6 +9,7 @@ import {
   Model,
   PrimaryKey,
   Table,
+  Unique,
   UpdatedAt
 } from "sequelize-typescript";
 
@@ -26,12 +27,14 @@ export default class Server extends Model<Server> {
   @Column
   public id: number;
 
+  @Unique
   @Column
   public name: string;
 
   @Column
   public password: string;
 
+  @Unique
   @Column
   public guid: string;
 
