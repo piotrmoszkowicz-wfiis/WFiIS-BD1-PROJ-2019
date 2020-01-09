@@ -5,6 +5,7 @@ import {
   JsonController,
   OnUndefined,
   Param,
+  Params,
   Post
 } from "routing-controllers";
 
@@ -31,7 +32,7 @@ export default class ItemController {
   }
 
   @Get("/item/:kitId?")
-  public getItems(@Param("kitId") kitId: number) {
+  public getItems(@Params({ required: false }) kitId?: number) {
     return this.itemService.getAllItems(kitId);
   }
 
